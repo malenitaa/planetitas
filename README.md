@@ -89,3 +89,14 @@ open out/space.svg
   por mes`). It's one line in the script — make it yours.
 - Sibling project: [panqueques](https://github.com/malenitaa/panqueques) 🥞 —
   same idea, but the months stack up as pancakes.
+
+## Enjoyed it?
+
+If this was useful and you'd like to support the project:
+
+- [Cafecito](https://cafecito.app/rezamalena)
+- [Ko-fi](https://ko-fi.com/malenitaa)
+
+## License
+
+[MIT](LICENSE)
