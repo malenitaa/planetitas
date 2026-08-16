@@ -4,10 +4,6 @@ Your last year of GitHub contributions as a little solar system. One planet per
 active month — the busier the month, the bigger the planet. The biggest one
 gets rings. A UFO (with alien) cruises through. Stars twinkle.
 
-Tu último año de contribuciones de GitHub como un pequeño sistema solar. Un
-planeta por mes activo — cuanto más movido el mes, más grande el planeta. El
-más grande tiene anillos, y un ovni con su alien pasea por la escena.
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="demo/space-dark.svg" />
   <img alt="demo: contributions as a solar system" src="demo/space.svg" />
@@ -85,8 +81,9 @@ open out/space.svg
   rest into asteroids.
 - Months with zero contributions don't get a planet. Empty space is part of
   the look — a quiet year is a minimalist solar system, not a sad one.
-- The caption is in Spanish (`… contribuciones en el último año · un planeta
-  por mes`). It's one line in the script — make it yours.
+- `--lang` picks the language of the caption and month labels: `en` (default)
+  or `es`. Adding another language is four lines in the `LOCALES` table at the
+  top of the script.
 - Sibling project: [panqueques](https://github.com/malenitaa/panqueques) 🥞 —
   same idea, but the months stack up as pancakes.
 

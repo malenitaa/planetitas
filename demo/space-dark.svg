@@ -90,7 +90,7 @@
         <path d="M -2.826004034710159 -14.130020173550793 a 14.130020173550793 14.130020173550793 0 0 1 0 28.260040347101587 a 17.66252521693849 17.66252521693849 0 0 0 0 -28.260040347101587" fill="#c9714f" opacity="0.55" transform="translate(2.826004034710159 0)"/>
       </g>
     </g>
-    <text class="fade lbl" style="animation-delay:0.60s" y="36" text-anchor="middle" fill="#8b949e">abr · 7</text>
+    <text class="fade lbl" style="animation-delay:0.60s" y="36" text-anchor="middle" fill="#8b949e">apr · 7</text>
   </g>
 
   <g transform="translate(265.0 154)">
@@ -133,7 +133,7 @@
         <circle cx="4.6" cy="12.3" r="3.7" fill="#6a97bb" opacity="0.7"/>
       </g>
     </g>
-    <text class="fade lbl" style="animation-delay:1.60s" y="53" text-anchor="middle" fill="#8b949e">ago · 129</text>
+    <text class="fade lbl" style="animation-delay:1.60s" y="53" text-anchor="middle" fill="#8b949e">aug · 129</text>
   </g>
 
   <g class="cruise">
@@ -150,5 +150,5 @@
     </g>
   </g>
 
-  <text class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">405 contribuciones en el último año · un planeta por mes</text>
+  <text class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">405 contributions in the last year · one planet per month</text>
 </svg>
