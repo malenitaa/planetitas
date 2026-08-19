@@ -86,8 +86,10 @@
   <g transform="translate(110.0 102)">
     <g class="pop" style="animation-delay:0.20s">
       <g class="drift" style="animation-duration:3.5s">
+        
         <circle r="14.1" fill="#e58f6a"/>
         <path d="M -2.826004034710159 -14.130020173550793 a 14.130020173550793 14.130020173550793 0 0 1 0 28.260040347101587 a 17.66252521693849 17.66252521693849 0 0 0 0 -28.260040347101587" fill="#c9714f" opacity="0.55" transform="translate(2.826004034710159 0)"/>
+        <clipPath id="clip0"><circle r="14.1"/></clipPath><g clip-path="url(#clip0)"><ellipse cy="-10.5" rx="9.3" ry="4.2" fill="#eef4fb" opacity="0.9" transform="rotate(-10)"/></g>
       </g>
     </g>
     <text class="fade lbl" style="animation-delay:0.60s" y="36" text-anchor="middle" fill="#9aa5c4">apr · 7</text>
@@ -96,8 +98,10 @@
   <g transform="translate(265.0 154)">
     <g class="pop" style="animation-delay:0.45s">
       <g class="drift" style="animation-duration:4.5s">
+        <ellipse rx="19.4" ry="5.9" fill="none" stroke="#9aa5c4" stroke-width="1.2" stroke-dasharray="3 5" opacity="0.35" transform="rotate(-18)"/>
         <circle r="12.9" fill="#7fb8a4"/>
         <path d="M -2.5803758383793807 -12.901879191896903 a 12.901879191896903 12.901879191896903 0 0 1 0 25.803758383793806 a 16.12734898987113 16.12734898987113 0 0 0 0 -25.803758383793806" fill="#5f9a86" opacity="0.55" transform="translate(2.5803758383793807 0)"/>
+        <g transform="rotate(-18) translate(19.4 0) rotate(18)"><circle r="3.4" fill="#cdd6e4"/><circle cx="-1.0" cy="-0.8" r="0.9" fill="#aab4c8" opacity="0.8"/></g>
       </g>
     </g>
     <text class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#9aa5c4">may · 4</text>
@@ -106,6 +110,7 @@
   <g transform="translate(420.0 102)">
     <g class="pop" style="animation-delay:0.70s">
       <g class="drift" style="animation-duration:5.5s">
+        
         <circle r="11.0" fill="#a99ae0"/>
         <path d="M -2.2 -11 a 11 11 0 0 1 0 22 a 13.75 13.75 0 0 0 0 -22" fill="#8a7ac4" opacity="0.55" transform="translate(2.2 0)"/>
       </g>
@@ -116,6 +121,7 @@
   <g transform="translate(575.0 154)">
     <g class="pop" style="animation-delay:0.95s">
       <g class="drift" style="animation-duration:3.5s">
+        
         <circle r="40.0" fill="#e0b354"/>
         <path d="M -8 -40 a 40 40 0 0 1 0 80 a 50 50 0 0 0 0 -80" fill="#c39638" opacity="0.55" transform="translate(8 0)"/>
         <ellipse cx="0" cy="0" rx="62.0" ry="15.2" fill="none" stroke="#e8d5a0" stroke-width="5" transform="rotate(-14)" opacity="0.9"/>
@@ -127,10 +133,11 @@
   <g transform="translate(730.0 102)">
     <g class="pop" style="animation-delay:1.20s">
       <g class="drift" style="animation-duration:4.5s">
+        
         <circle r="30.7" fill="#88b5d8"/>
         <path d="M -6.139863207847502 -30.69931603923751 a 30.69931603923751 30.69931603923751 0 0 1 0 61.39863207847502 a 38.37414504904689 38.37414504904689 0 0 0 0 -61.39863207847502" fill="#6a97bb" opacity="0.55" transform="translate(6.139863207847502 0)"/>
-        <circle cx="-10.7" cy="-7.7" r="5.5" fill="#6a97bb" opacity="0.7"/>
-        <circle cx="4.6" cy="12.3" r="3.7" fill="#6a97bb" opacity="0.7"/>
+        <ellipse cx="-8.0" cy="6.1" rx="12.3" ry="7.7" fill="#6a97bb" opacity="0.45"/>
+        <ellipse cx="-8.0" cy="6.1" rx="8.3" ry="4.9" fill="#6a97bb" opacity="0.95"/>
       </g>
     </g>
     <text class="fade lbl" style="animation-delay:1.60s" y="53" text-anchor="middle" fill="#9aa5c4">aug · 129</text>
