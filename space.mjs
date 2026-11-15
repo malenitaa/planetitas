@@ -1,6 +1,7 @@
 // Generates an animated SVG of the last year of GitHub contributions
 // as a little solar system: one planet per active month (size ∝ √contributions),
-// a UFO with an alien cruising through, and a starfield.
+// a UFO with an alien cruising through, a starfield, and the odd shooting
+// star or satellite passing in the background.
 //
 // Usage:
 //   GITHUB_TOKEN=... node scripts/space.mjs <login> <outdir> [--lang en|es]
@@ -95,6 +96,24 @@ const PLANET_COLORS = [
   { body: "#d789a8", shade: "#b96b8b", light: "#ecc0d2" }, // rose
 ];
 
+// each calendar month has a fixed look, so a planet never changes style or color
+// as totals grow or months slide out of the window. [style, PLANET_COLORS index]
+// Neighbouring months never share a style; the three repeats sit far apart.
+const MONTH_LOOK = [
+  ["moon", 3],    // jan
+  ["belt", 4],    // feb
+  ["spiral", 5],  // mar
+  ["icecap", 0],  // apr
+  ["craters", 1], // may
+  ["moon", 2],    // jun
+  ["storm", 3],   // jul
+  ["ring", 4],    // aug
+  ["belt", 5],    // sep
+  ["spiral", 0],  // oct
+  ["stripes", 1], // nov
+  ["halo", 2],    // dec
+];
+
 function render({ months, grandTotal }, palette) {
   const W = 840;
   const H = 300;
@@ -118,6 +137,25 @@ function render({ months, grandTotal }, palette) {
     );
   }
 
+  // rare background visitors, behind the planets: a shooting star and a satellite.
+  // Cycle lengths (23s, 37s) don't divide the UFO's 14s, so they rarely line up.
+  parts.push(`
+  <defs><linearGradient id="tail" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="66" y2="-23"><stop offset="0" stop-color="${p.star}"/><stop offset="1" stop-color="${p.star}" stop-opacity="0"/></linearGradient></defs>
+  <g class="meteor">
+    <line x1="0" y1="0" x2="66" y2="-23" stroke="url(#tail)" stroke-width="1.8" stroke-linecap="round"/>
+    <circle r="1.7" fill="${p.star}"/>
+  </g>
+  <g class="sat">
+    <g transform="rotate(-20)">
+      <rect x="-13" y="-3" width="8" height="6" fill="${p.dome}" opacity="0.85"/>
+      <rect x="5" y="-3" width="8" height="6" fill="${p.dome}" opacity="0.85"/>
+      <line x1="-9" y1="-3" x2="-9" y2="3" stroke="${p.bg}" stroke-width="0.8" opacity="0.6"/>
+      <line x1="9" y1="-3" x2="9" y2="3" stroke="${p.bg}" stroke-width="0.8" opacity="0.6"/>
+      <rect x="-3.5" y="-4" width="7" height="8" rx="1.2" fill="${p.ufoTop}"/>
+      <circle class="tw" cx="0" cy="-6" r="1.2" fill="${p.light2}"/>
+    </g>
+  </g>`);
+
   // planets: one per active month, chronological left → right
   const n = months.length;
   const sqrts = months.map((m) => Math.sqrt(m.total));
@@ -130,36 +168,22 @@ function render({ months, grandTotal }, palette) {
       ? (R_MIN + R_MAX) / 2
       : R_MIN + ((Math.sqrt(m.total) - sMin) / (sMax - sMin)) * (R_MAX - R_MIN);
 
-  const biggest = months.reduce((a, b) => (b.total > a.total ? b : a));
 
   months.forEach((m, i) => {
     const r = radiusOf(m);
     const cx = 110 + ((W - 220) * (n === 1 ? 0.5 : i / (n - 1)));
     const cy = 128 + (i % 2 === 0 ? -26 : 26); // stagger orbits
-    const c = PLANET_COLORS[i % PLANET_COLORS.length];
+    const [style, colorIdx] = MONTH_LOOK[Number(m.key.slice(5)) - 1];
+    const c = PLANET_COLORS[colorIdx];
     const delay = (0.2 + i * 0.25).toFixed(2);
     const drift = (3.5 + (i % 3)).toFixed(1);
 
-    // per-planet PRNG: same month + total => same look on every regeneration
-    const pr = mulberry32(m.total * 131 + i * 7 + 1);
+    // per-month PRNG (only for the belt's dot scatter): keyed by the month, not the total
+    const pr = mulberry32(Number(m.key.replace("-", "")));
     const under = [];  // drawn behind the planet body (orbits, halos, belt back)
     const details = [];
     // crescent shading
     details.push(`<path d="M ${-r * 0.2} ${-r} a ${r} ${r} 0 0 1 0 ${2 * r} a ${r * 1.25} ${r * 1.25} 0 0 0 0 ${-2 * r}" fill="${c.shade}" opacity="0.55" transform="translate(${r * 0.2} 0)"/>`);
-
-    // the ring stays exclusive to the biggest month; everyone else rolls a style
-    // (stripes/storm only on big planets, craters only above the old threshold)
-    let style;
-    if (m === biggest) {
-      style = "ring";
-    } else {
-      const pool = r > 22
-        ? ["craters", "stripes", "storm", "icecap", "moon", "halo", "belt"]
-        : r > 16
-          ? ["plain", "craters", "icecap", "moon", "halo"]
-          : ["plain", "icecap", "moon", "halo"];
-      style = pool[Math.floor(pr() * pool.length)];
-    }
 
     if (style === "ring") {
       details.push(`<ellipse cx="0" cy="0" rx="${(r * 1.55).toFixed(1)}" ry="${(r * 0.38).toFixed(1)}" fill="none" stroke="${p.ring}" stroke-width="5" transform="rotate(-14)" opacity="0.9"/>`);
@@ -173,12 +197,23 @@ function render({ months, grandTotal }, palette) {
       // great-spot storm: soft rim + dark core
       details.push(`<ellipse cx="${(-r * 0.26).toFixed(1)}" cy="${(r * 0.2).toFixed(1)}" rx="${(r * 0.4).toFixed(1)}" ry="${(r * 0.25).toFixed(1)}" fill="${c.shade}" opacity="0.45"/>`);
       details.push(`<ellipse cx="${(-r * 0.26).toFixed(1)}" cy="${(r * 0.2).toFixed(1)}" rx="${(r * 0.27).toFixed(1)}" ry="${(r * 0.16).toFixed(1)}" fill="${c.shade}" opacity="0.95"/>`);
+    } else if (style === "spiral") {
+      // swirling vortex: an Archimedean spiral, slightly squashed to sit on the sphere
+      const pts = [];
+      for (let k = 0; k <= 72; k++) {
+        const t = k / 72;
+        const a = t * 2.5 * 2 * Math.PI;
+        pts.push(`${(r * 0.82 * t * Math.cos(a)).toFixed(1)},${(r * 0.66 * t * Math.sin(a)).toFixed(1)}`);
+      }
+      details.push(`<polyline points="${pts.join(" ")}" fill="none" stroke="${c.shade}" stroke-width="${(r * 0.11).toFixed(1)}" stroke-linecap="round" opacity="0.65" transform="rotate(-14)"/>`);
     } else if (style === "icecap") {
       details.push(`<clipPath id="clip${i}"><circle r="${r.toFixed(1)}"/></clipPath><g clip-path="url(#clip${i})"><ellipse cy="${(-r * 0.74).toFixed(1)}" rx="${(r * 0.66).toFixed(1)}" ry="${(r * 0.3).toFixed(1)}" fill="#eef4fb" opacity="0.9" transform="rotate(-10)"/></g>`);
     } else if (style === "moon") {
       // dashed orbit behind, little moon in front (reuses the UFO greys, so it follows the theme)
       under.push(`<ellipse rx="${(r * 1.5).toFixed(1)}" ry="${(r * 0.46).toFixed(1)}" fill="none" stroke="${p.muted}" stroke-width="1.2" stroke-dasharray="3 5" opacity="0.35" transform="rotate(-18)"/>`);
       details.push(`<g transform="rotate(-18) translate(${(r * 1.5).toFixed(1)} 0) rotate(18)"><circle r="${(r * 0.26).toFixed(1)}" fill="${p.ufoTop}"/><circle cx="${(-r * 0.08).toFixed(1)}" cy="${(-r * 0.06).toFixed(1)}" r="${(r * 0.07).toFixed(1)}" fill="${p.ufoBody}" opacity="0.8"/></g>`);
+      // a second, smaller moon on the far side of the same orbit
+      details.push(`<g transform="rotate(-18) translate(${(-r * 1.41).toFixed(1)} ${(-r * 0.16).toFixed(1)})"><circle r="${(r * 0.16).toFixed(1)}" fill="${p.ufoBody}"/></g>`);
     } else if (style === "halo") {
       under.push(`<circle r="${(r * 1.2).toFixed(1)}" fill="none" stroke="${c.light}" stroke-width="${(r * 0.13).toFixed(1)}" opacity="0.5"/>`);
       under.push(`<circle r="${(r * 1.38).toFixed(1)}" fill="none" stroke="${c.light}" stroke-width="${(r * 0.1).toFixed(1)}" opacity="0.22"/>`);
@@ -231,7 +266,7 @@ function render({ months, grandTotal }, palette) {
   <text class="fade cap" style="animation-delay:1.8s" x="${W / 2}" y="${H - 16}" text-anchor="middle" fill="${p.muted}">${esc(locale.caption(grandTotal))}</text>`);
 
   const css = staticMode
-    ? `.cruise{transform:translate(420px,52px)}`
+    ? `.cruise{transform:translate(420px,52px)}.meteor,.sat{display:none}`
     : `
     .pop{animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
     .fade{animation:fadein .6s ease-out both}
@@ -245,9 +280,14 @@ function render({ months, grandTotal }, palette) {
     @keyframes tw{0%,100%{opacity:.15}50%{opacity:.9}}
     @keyframes cruise{from{transform:translate(-60px,52px)}to{transform:translate(${W + 60}px,52px)}}
     @keyframes bob{from{transform:translateY(-2.5px)}to{transform:translateY(2.5px)}}
+    .meteor{animation:meteor 23s ease-in 4s infinite both}
+    .sat{animation:sat 37s linear 9s infinite both}
+    @keyframes meteor{0%{transform:translate(700px,20px);opacity:0}1%{opacity:1}5%{transform:translate(480px,95px);opacity:0}100%{transform:translate(480px,95px);opacity:0}}
+    @keyframes sat{0%{transform:translate(-30px,235px)}30%,100%{transform:translate(${W + 30}px,15px)}}
     @media (prefers-reduced-motion:reduce){
       .pop,.fade,.drift,.tw,.bob{animation:none}
       .cruise{animation:none;transform:translate(420px,52px)}
+      .meteor,.sat{animation:none;display:none}
     }`;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">
