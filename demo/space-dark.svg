@@ -8,7 +8,9 @@
     .fade{animation:fadein .6s ease-out both}
     .drift{animation:drift 4s ease-in-out infinite alternate}
     .tw{animation:tw 2.8s ease-in-out infinite}
-    .cruise{animation:cruise 14s linear infinite}
+    .cruise{animation:cruise 20s linear infinite}
+    .lt{animation:lights 2.4s linear infinite}
+    @keyframes lights{0%,100%{fill:#ffd166}25%{fill:#ef8368}50%{fill:#8fd48a}75%{fill:#88b5d8}}
     .bob{animation:bob 1.6s ease-in-out infinite alternate}
     @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
     @keyframes fadein{from{opacity:0}to{opacity:1}}
@@ -16,9 +18,16 @@
     @keyframes tw{0%,100%{opacity:.15}50%{opacity:.9}}
     @keyframes cruise{from{transform:translate(-60px,52px)}to{transform:translate(900px,52px)}}
     @keyframes bob{from{transform:translateY(-2.5px)}to{transform:translateY(2.5px)}}
+    .meteor{animation:meteor 185.8s linear infinite both}
+    .sat{animation:sat 240.9s linear infinite both}
+    .satf{animation:satf 240.9s linear infinite both}
+    @keyframes meteor{0%{transform:translate(336px,84px) rotate(-119deg);opacity:0}2.152%{transform:translate(336px,84px) rotate(-119deg);opacity:0}2.287%{opacity:1}2.640%{opacity:1}2.774%{transform:translate(488px,220px) rotate(-119deg);opacity:0}18.937%{transform:translate(679px,51px) rotate(4deg);opacity:0}19.072%{opacity:1}19.416%{opacity:1}19.550%{transform:translate(432px,119px) rotate(4deg);opacity:0}44.060%{transform:translate(234px,85px) rotate(-126deg);opacity:0}44.194%{opacity:1}44.532%{opacity:1}44.666%{transform:translate(439px,226px) rotate(-126deg);opacity:0}73.676%{transform:translate(459px,34px) rotate(-30deg);opacity:0}73.811%{opacity:1}74.090%{opacity:1}74.224%{transform:translate(316px,197px) rotate(-30deg);opacity:0}100%{transform:translate(316px,197px) rotate(-30deg);opacity:0}}
+    @keyframes sat{0%{transform:translate(-30px,177px);opacity:0}4.982%{transform:translate(-30px,177px);opacity:0}5.107%{opacity:1}10.324%{opacity:1}10.448%{transform:translate(870px,100px);opacity:0}68.446%{transform:translate(-30px,63px);opacity:0}68.571%{opacity:1}73.975%{opacity:1}74.099%{transform:translate(870px,180px);opacity:0}100%{transform:translate(870px,180px);opacity:0}}
+    @keyframes satf{0%{transform:translate(870px,198px);opacity:0}35.233%{transform:translate(870px,198px);opacity:0}35.357%{opacity:1}39.405%{opacity:1}39.529%{transform:translate(-30px,106px);opacity:0}100%{transform:translate(-30px,106px);opacity:0}}
     @media (prefers-reduced-motion:reduce){
-      .pop,.fade,.drift,.tw,.bob{animation:none}
+      .pop,.fade,.drift,.tw,.bob,.lt{animation:none}
       .cruise{animation:none;transform:translate(420px,52px)}
+      .meteor,.sat,.satf{animation:none;display:none}
     }
   </style>
 <rect x="0" y="0" width="840" height="300" rx="12" fill="#0d1117"/>
@@ -83,64 +92,130 @@
 <circle cx="342.7" cy="167.7" r="1.31" fill="#dfe6f2" opacity="0.66"/>
 <circle cx="777.6" cy="194.1" r="1.49" fill="#dfe6f2" opacity="0.71"/>
 
+  <defs><linearGradient id="tail" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="66" y2="-23"><stop offset="0" stop-color="#dfe6f2"/><stop offset="1" stop-color="#dfe6f2" stop-opacity="0"/></linearGradient></defs>
+  <g class="meteor">
+    <line x1="0" y1="0" x2="66" y2="-23" stroke="url(#tail)" stroke-width="1.8" stroke-linecap="round"/>
+    <circle r="1.7" fill="#dfe6f2"/>
+  </g>
+  <g class="sat">
+    <g transform="rotate(-20)">
+      <rect x="-13" y="-3" width="8" height="6" fill="#a8d8ef" opacity="0.85"/>
+      <rect x="5" y="-3" width="8" height="6" fill="#a8d8ef" opacity="0.85"/>
+      <line x1="-9" y1="-3" x2="-9" y2="3" stroke="#0d1117" stroke-width="0.8" opacity="0.6"/>
+      <line x1="9" y1="-3" x2="9" y2="3" stroke="#0d1117" stroke-width="0.8" opacity="0.6"/>
+      <rect x="-3.5" y="-4" width="7" height="8" rx="1.2" fill="#b7c1d1"/>
+      <circle class="tw" cx="0" cy="-6" r="1.2" fill="#ef8368"/>
+    </g>
+  </g>
+
   <g transform="translate(110.0 102)">
     <g class="pop" style="animation-delay:0.20s">
       <g class="drift" style="animation-duration:3.5s">
         
-        <circle r="14.1" fill="#e58f6a"/>
-        <path d="M -2.826004034710159 -14.130020173550793 a 14.130020173550793 14.130020173550793 0 0 1 0 28.260040347101587 a 17.66252521693849 17.66252521693849 0 0 0 0 -28.260040347101587" fill="#c9714f" opacity="0.55" transform="translate(2.826004034710159 0)"/>
-        <clipPath id="clip0"><circle r="14.1"/></clipPath><g clip-path="url(#clip0)"><ellipse cy="-10.5" rx="9.3" ry="4.2" fill="#eef4fb" opacity="0.9" transform="rotate(-10)"/></g>
+        <circle r="13.4" fill="#e58f6a"/>
+        <path d="M -2.6868146144356104 -13.434073072178052 a 13.434073072178052 13.434073072178052 0 0 1 0 26.868146144356103 a 16.792591340222565 16.792591340222565 0 0 0 0 -26.868146144356103" fill="#c9714f" opacity="0.55" transform="translate(2.6868146144356104 0)"/>
+        <clipPath id="clip0"><circle r="13.4"/></clipPath><g clip-path="url(#clip0)"><ellipse cy="-9.9" rx="8.9" ry="4.0" fill="#eef4fb" opacity="0.9" transform="rotate(-10)"/></g>
       </g>
     </g>
-    <text class="fade lbl" style="animation-delay:0.60s" y="36" text-anchor="middle" fill="#8b949e">apr · 7</text>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">abr · 11</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">abr · 11</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">avr · 11</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">apr · 11</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">apr · 11</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">4月 · 11</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">4月 · 11</text><text class="fade lbl" style="animation-delay:0.60s" y="35" text-anchor="middle" fill="#8b949e">apr · 11</text></switch>
   </g>
 
-  <g transform="translate(265.0 154)">
+  <g transform="translate(198.6 154)">
     <g class="pop" style="animation-delay:0.45s">
       <g class="drift" style="animation-duration:4.5s">
-        <ellipse rx="19.4" ry="5.9" fill="none" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="3 5" opacity="0.35" transform="rotate(-18)"/>
-        <circle r="12.9" fill="#7fb8a4"/>
-        <path d="M -2.5803758383793807 -12.901879191896903 a 12.901879191896903 12.901879191896903 0 0 1 0 25.803758383793806 a 16.12734898987113 16.12734898987113 0 0 0 0 -25.803758383793806" fill="#5f9a86" opacity="0.55" transform="translate(2.5803758383793807 0)"/>
-        <g transform="rotate(-18) translate(19.4 0) rotate(18)"><circle r="3.4" fill="#b7c1d1"/><circle cx="-1.0" cy="-0.8" r="0.9" fill="#8b95a7" opacity="0.8"/></g>
+        
+        <circle r="12.5" fill="#7fb8a4"/>
+        <path d="M -2.5045951995329863 -12.52297599766493 a 12.52297599766493 12.52297599766493 0 0 1 0 25.04595199532986 a 15.653719997081163 15.653719997081163 0 0 0 0 -25.04595199532986" fill="#5f9a86" opacity="0.55" transform="translate(2.5045951995329863 0)"/>
+        <circle cx="-4.4" cy="-3.1" r="2.3" fill="#5f9a86" opacity="0.7"/>
+        <circle cx="1.9" cy="5.0" r="1.5" fill="#5f9a86" opacity="0.7"/>
       </g>
     </g>
-    <text class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">may · 4</text>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">may · 6</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">mai · 6</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">mai · 6</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">mag · 6</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">mai · 6</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">5月 · 6</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">5月 · 6</text><text class="fade lbl" style="animation-delay:0.85s" y="35" text-anchor="middle" fill="#8b949e">may · 6</text></switch>
   </g>
 
-  <g transform="translate(420.0 102)">
+  <g transform="translate(287.1 102)">
     <g class="pop" style="animation-delay:0.70s">
       <g class="drift" style="animation-duration:5.5s">
-        
+        <ellipse rx="16.5" ry="5.1" fill="none" stroke="#8b949e" stroke-width="1.2" stroke-dasharray="3 5" opacity="0.35" transform="rotate(-18)"/>
         <circle r="11.0" fill="#a99ae0"/>
         <path d="M -2.2 -11 a 11 11 0 0 1 0 22 a 13.75 13.75 0 0 0 0 -22" fill="#8a7ac4" opacity="0.55" transform="translate(2.2 0)"/>
+        <g transform="rotate(-18) translate(16.5 0) rotate(18)"><circle r="2.9" fill="#b7c1d1"/><circle cx="-0.9" cy="-0.7" r="0.8" fill="#8b95a7" opacity="0.8"/></g>
+        <g transform="rotate(-18) translate(-15.5 -1.8)"><circle r="1.8" fill="#8b95a7"/></g>
       </g>
     </g>
-    <text class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">jun · 1</text>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">jun · 1</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">jun · 1</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">juin · 1</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">giu · 1</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">jun · 1</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">6月 · 1</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">6月 · 1</text><text class="fade lbl" style="animation-delay:1.10s" y="33" text-anchor="middle" fill="#8b949e">jun · 1</text></switch>
   </g>
 
-  <g transform="translate(575.0 154)">
+  <g transform="translate(375.7 154)">
     <g class="pop" style="animation-delay:0.95s">
       <g class="drift" style="animation-duration:3.5s">
         
-        <circle r="40.0" fill="#e0b354"/>
-        <path d="M -8 -40 a 40 40 0 0 1 0 80 a 50 50 0 0 0 0 -80" fill="#c39638" opacity="0.55" transform="translate(8 0)"/>
-        <ellipse cx="0" cy="0" rx="62.0" ry="15.2" fill="none" stroke="#d9c68f" stroke-width="5" transform="rotate(-14)" opacity="0.9"/>
+        <circle r="32.4" fill="#e0b354"/>
+        <path d="M -6.477214373229254 -32.38607186614627 a 32.38607186614627 32.38607186614627 0 0 1 0 64.77214373229253 a 40.482589832682834 40.482589832682834 0 0 0 0 -64.77214373229253" fill="#c39638" opacity="0.55" transform="translate(6.477214373229254 0)"/>
+        <ellipse cx="-8.4" cy="6.5" rx="13.0" ry="8.1" fill="#c39638" opacity="0.45"/>
+        <ellipse cx="-8.4" cy="6.5" rx="8.7" ry="5.2" fill="#c39638" opacity="0.95"/>
       </g>
     </g>
-    <text class="fade lbl" style="animation-delay:1.35s" y="70" text-anchor="middle" fill="#8b949e">jul · 264</text>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">jul · 456</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">jul · 456</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">juil · 456</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">lug · 456</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">jul · 456</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">7月 · 456</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">7月 · 456</text><text class="fade lbl" style="animation-delay:1.35s" y="54" text-anchor="middle" fill="#8b949e">jul · 456</text></switch>
   </g>
 
-  <g transform="translate(730.0 102)">
+  <g transform="translate(464.3 102)">
     <g class="pop" style="animation-delay:1.20s">
       <g class="drift" style="animation-duration:4.5s">
         
-        <circle r="30.7" fill="#88b5d8"/>
-        <path d="M -6.139863207847502 -30.69931603923751 a 30.69931603923751 30.69931603923751 0 0 1 0 61.39863207847502 a 38.37414504904689 38.37414504904689 0 0 0 0 -61.39863207847502" fill="#6a97bb" opacity="0.55" transform="translate(6.139863207847502 0)"/>
-        <ellipse cx="-8.0" cy="6.1" rx="12.3" ry="7.7" fill="#6a97bb" opacity="0.45"/>
-        <ellipse cx="-8.0" cy="6.1" rx="8.3" ry="4.9" fill="#6a97bb" opacity="0.95"/>
+        <circle r="40.0" fill="#88b5d8"/>
+        <path d="M -8 -40 a 40 40 0 0 1 0 80 a 50 50 0 0 0 0 -80" fill="#6a97bb" opacity="0.55" transform="translate(8 0)"/>
+        <ellipse cx="0" cy="0" rx="62.0" ry="15.2" fill="none" stroke="#d9c68f" stroke-width="5" transform="rotate(-14)" opacity="0.9"/>
       </g>
     </g>
-    <text class="fade lbl" style="animation-delay:1.60s" y="53" text-anchor="middle" fill="#8b949e">aug · 129</text>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">ago · 818</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">ago · 818</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">août · 818</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">ago · 818</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">aug · 818</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">8月 · 818</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">8月 · 818</text><text class="fade lbl" style="animation-delay:1.60s" y="70" text-anchor="middle" fill="#8b949e">aug · 818</text></switch>
+  </g>
+
+  <g transform="translate(552.9 154)">
+    <g class="pop" style="animation-delay:1.45s">
+      <g class="drift" style="animation-duration:5.5s">
+        <g transform="rotate(-14)"><circle cx="-37.5" cy="-0.1" r="2.6" fill="#d9c68f" opacity="0.64"/><circle cx="-37.5" cy="-0.2" r="1.5" fill="#d9c68f" opacity="0.53"/><circle cx="-34.3" cy="-3.9" r="2.1" fill="#d9c68f" opacity="0.91"/><circle cx="-24.3" cy="-7.4" r="2.1" fill="#d9c68f" opacity="0.75"/><circle cx="-23.4" cy="-7.6" r="2.3" fill="#d9c68f" opacity="0.76"/><circle cx="-14.9" cy="-8.9" r="2.3" fill="#d9c68f" opacity="0.59"/><circle cx="-3.6" cy="-9.7" r="1.4" fill="#d9c68f" opacity="0.62"/><circle cx="8.1" cy="-9.5" r="2.1" fill="#d9c68f" opacity="0.67"/><circle cx="23.2" cy="-7.6" r="2.4" fill="#d9c68f" opacity="0.56"/><circle cx="30.3" cy="-5.7" r="1.3" fill="#d9c68f" opacity="0.73"/><circle cx="33.9" cy="-4.1" r="1.4" fill="#d9c68f" opacity="0.69"/><circle cx="37.5" cy="-0.4" r="2.5" fill="#d9c68f" opacity="0.82"/></g>
+        <circle r="23.2" fill="#d789a8"/>
+        <path d="M -4.631274251842922 -23.15637125921461 a 23.15637125921461 23.15637125921461 0 0 1 0 46.31274251842922 a 28.94546407401826 28.94546407401826 0 0 0 0 -46.31274251842922" fill="#b96b8b" opacity="0.55" transform="translate(4.631274251842922 0)"/>
+        <g transform="rotate(-14)"><circle cx="37.2" cy="1.2" r="2.6" fill="#d9c68f" opacity="0.59"/><circle cx="35.9" cy="2.8" r="2.2" fill="#d9c68f" opacity="0.70"/><circle cx="26.2" cy="7.0" r="1.9" fill="#d9c68f" opacity="0.65"/><circle cx="19.3" cy="8.3" r="2.2" fill="#d9c68f" opacity="0.91"/><circle cx="13.1" cy="9.1" r="2.5" fill="#d9c68f" opacity="0.51"/><circle cx="-4.2" cy="9.7" r="1.9" fill="#d9c68f" opacity="0.83"/><circle cx="-5.6" cy="9.6" r="1.3" fill="#d9c68f" opacity="0.82"/><circle cx="-23.9" cy="7.5" r="2.5" fill="#d9c68f" opacity="0.66"/><circle cx="-30.0" cy="5.8" r="1.8" fill="#d9c68f" opacity="0.80"/><circle cx="-32.9" cy="4.7" r="1.6" fill="#d9c68f" opacity="0.77"/></g>
+      </g>
+    </g>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">sep · 158</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">set · 158</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">sept · 158</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">set · 158</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">sep · 158</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">9月 · 158</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">9月 · 158</text><text class="fade lbl" style="animation-delay:1.85s" y="49" text-anchor="middle" fill="#8b949e">sep · 158</text></switch>
+  </g>
+
+  <g transform="translate(641.4 102)">
+    <g class="pop" style="animation-delay:1.70s">
+      <g class="drift" style="animation-duration:3.5s">
+        
+        <circle r="25.8" fill="#e58f6a"/>
+        <path d="M -5.16984962753309 -25.849248137665448 a 25.849248137665448 25.849248137665448 0 0 1 0 51.698496275330896 a 32.31156017208181 32.31156017208181 0 0 0 0 -51.698496275330896" fill="#c9714f" opacity="0.55" transform="translate(5.16984962753309 0)"/>
+        <polyline points="0.0,0.0 0.3,0.1 0.5,0.2 0.7,0.4 0.8,0.7 0.7,1.1 0.5,1.4 0.1,1.7 -0.4,1.9 -1.0,2.0 -1.7,1.9 -2.4,1.8 -3.1,1.4 -3.6,0.9 -4.1,0.3 -4.4,-0.5 -4.4,-1.3 -4.2,-2.2 -3.7,-3.0 -3.0,-3.8 -2.0,-4.5 -0.8,-4.9 0.6,-5.2 2.0,-5.2 3.5,-4.9 5.0,-4.4 6.3,-3.5 7.3,-2.4 8.1,-1.2 8.5,0.3 8.5,1.8 8.1,3.4 7.2,4.9 5.9,6.2 4.2,7.3 2.2,8.1 0.0,8.5 -2.4,8.6 -4.7,8.2 -7.0,7.3 -9.0,6.1 -10.7,4.5 -11.9,2.6 -12.6,0.4 -12.8,-1.8 -12.2,-4.1 -11.1,-6.3 -9.3,-8.2 -7.1,-9.8 -4.3,-11.1 -1.3,-11.8 2.0,-12.0 5.2,-11.6 8.4,-10.6 11.2,-9.0 13.7,-7.0 15.5,-4.5 16.6,-1.8 17.0,1.2 16.6,4.2 15.3,7.1 13.2,9.8 10.5,12.0 7.1,13.8 3.3,14.9 -0.8,15.4 -5.0,15.1 -9.1,14.1 -12.9,12.3 -16.1,10.0 -18.7,7.0 -20.4,3.6 -21.2,0.0" fill="none" stroke="#c9714f" stroke-width="2.8" stroke-linecap="round" opacity="0.65" transform="rotate(-14)"/>
+      </g>
+    </g>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">oct · 229</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">out · 229</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">oct · 229</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">ott · 229</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">okt · 229</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">10月 · 229</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">10月 · 229</text><text class="fade lbl" style="animation-delay:2.10s" y="48" text-anchor="middle" fill="#8b949e">oct · 229</text></switch>
+  </g>
+
+  <g transform="translate(730.0 154)">
+    <g class="pop" style="animation-delay:1.95s">
+      <g class="drift" style="animation-duration:4.5s">
+        
+        <circle r="30.3" fill="#7fb8a4"/>
+        <path d="M -6.0646184853148055 -30.323092426574025 a 30.323092426574025 30.323092426574025 0 0 1 0 60.64618485314805 a 37.903865533217534 37.903865533217534 0 0 0 0 -60.64618485314805" fill="#5f9a86" opacity="0.55" transform="translate(6.0646184853148055 0)"/>
+        <clipPath id="clip7"><circle r="30.3"/></clipPath><g clip-path="url(#clip7)"><g transform="rotate(-8)" fill="#5f9a86" opacity="0.5"><rect x="-30.3" y="-14.6" width="60.6" height="7.3" rx="3.0"/><rect x="-30.3" y="-1.8" width="60.6" height="6.1" rx="2.7"/><rect x="-30.3" y="9.7" width="60.6" height="4.9" rx="2.4"/></g></g>
+      </g>
+    </g>
+    <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">nov · 376</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">nov · 376</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">nov · 376</text><text systemLanguage="it, it-IT, it-CH" class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">nov · 376</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">nov · 376</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">11月 · 376</text><text systemLanguage="ja, ja-JP" class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">11月 · 376</text><text class="fade lbl" style="animation-delay:2.35s" y="52" text-anchor="middle" fill="#8b949e">nov · 376</text></switch>
+  </g>
+
+  <g class="satf">
+    <g transform="rotate(-20)">
+      <rect x="-13" y="-3" width="8" height="6" fill="#a8d8ef" opacity="0.85"/>
+      <rect x="5" y="-3" width="8" height="6" fill="#a8d8ef" opacity="0.85"/>
+      <line x1="-9" y1="-3" x2="-9" y2="3" stroke="#0d1117" stroke-width="0.8" opacity="0.6"/>
+      <line x1="9" y1="-3" x2="9" y2="3" stroke="#0d1117" stroke-width="0.8" opacity="0.6"/>
+      <rect x="-3.5" y="-4" width="7" height="8" rx="1.2" fill="#b7c1d1"/>
+      <circle class="tw" cx="0" cy="-6" r="1.2" fill="#ef8368"/>
+    </g>
   </g>
 
   <g class="cruise">
@@ -151,11 +226,11 @@
       <circle cx="0" cy="-6" r="6" fill="#8fd48a"/>
       <circle cx="-2.2" cy="-7" r="1.4" fill="#1d3320"/>
       <circle cx="2.2" cy="-7" r="1.4" fill="#1d3320"/>
-      <circle cx="-18" cy="7" r="2" fill="#ffd166"/>
-      <circle cx="0" cy="9" r="2" fill="#ef8368"/>
-      <circle cx="18" cy="7" r="2" fill="#ffd166"/>
+      <circle class="lt" cx="-18" cy="7" r="2" fill="#ffd166"/>
+      <circle class="lt" style="animation-delay:-0.8s" cx="0" cy="9" r="2" fill="#ef8368"/>
+      <circle class="lt" style="animation-delay:-1.6s" cx="18" cy="7" r="2" fill="#ffd166"/>
     </g>
   </g>
 
-  <text class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">405 contributions in the last year · one planet per month</text>
+  <switch><text systemLanguage="es, es-419, es-AR, es-BO, es-CL, es-CO, es-CR, es-CU, es-DO, es-EC, es-ES, es-GT, es-HN, es-MX, es-NI, es-PA, es-PE, es-PR, es-PY, es-SV, es-US, es-UY, es-VE" class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">2055 contribuciones en el último año · un planeta por mes</text><text systemLanguage="pt, pt-BR, pt-PT, pt-AO, pt-MZ" class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">2055 contribuições no último ano · um planeta por mês</text><text systemLanguage="fr, fr-FR, fr-CA, fr-BE, fr-CH, fr-LU" class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">2055 contributions sur la dernière année · une planète par mois</text><text systemLanguage="it, it-IT, it-CH" class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">2055 contributi nell'ultimo anno · un pianeta al mese</text><text systemLanguage="de, de-DE, de-AT, de-CH" class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">2055 Beiträge im letzten Jahr · ein Planet pro Monat</text><text systemLanguage="zh, zh-CN, zh-TW, zh-HK, zh-SG, zh-Hans, zh-Hant, zh-Hans-CN, zh-Hant-TW, zh-Hant-HK" class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">过去一年 2055 次贡献 · 每月一颗星球</text><text systemLanguage="ja, ja-JP" class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">過去1年間のコントリビューション 2055 件 · 1か月に1つの惑星</text><text class="fade cap" style="animation-delay:1.8s" x="420" y="284" text-anchor="middle" fill="#8b949e">2055 contributions in the last year · one planet per month</text></switch>
 </svg>
