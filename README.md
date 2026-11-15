@@ -83,9 +83,14 @@ open out/space.svg
   rest into asteroids.
 - Months with zero contributions don't get a planet. Empty space is part of
   the look — a quiet year is a minimalist solar system, not a sad one.
-- `--lang` picks the language of the caption and month labels: `en` (default)
-  or `es`. Adding another language is four lines in the `LOCALES` table at the
-  top of the script.
+- Language: by default the caption and month labels follow each visitor's
+  browser language (English, Spanish, Portuguese, French, Italian, German,
+  Chinese or Japanese) and fall back to English. It's one SVG with an SVG
+  `<switch systemLanguage>`, no JavaScript. If a visitor's browser lists several
+  of those languages, the first one in the table wins (English last), not the
+  visitor's favorite. Pass `--lang es` (or any code above) to pin one language
+  for everyone. Adding a language is one entry in the `LOCALES` table at the top
+  of the script.
 - Sibling project: [panqueques](https://github.com/malenitaa/panqueques) 🥞 —
   same idea, but the months stack up as pancakes.
 
