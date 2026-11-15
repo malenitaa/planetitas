@@ -4,7 +4,7 @@ Your last year of GitHub contributions as a little solar system. One planet per
 active month — the busier the month, the bigger the planet. The biggest one
 gets rings; the rest roll their own look — craters, stripes, a storm, a polar
 ice cap, a little moon, a hazy atmosphere, or an asteroid belt (stable between
-regenerations). A UFO (with alien) cruises through. Stars twinkle.
+regenerations). A UFO (with alien) cruises through. Stars twinkle, and every so often a shooting star or a satellite goes by.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="demo/space-dark.svg" />
